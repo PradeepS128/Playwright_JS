@@ -1,13 +1,13 @@
-class LoginPage 
+exports.LoginPage=class LoginPage 
 {
 
 constructor(page)
 {
     this.page=page;
-    this.userID=page.getByLabel('User ID');
-    this.password =page.getByLabel('Password');
-    this.checkbox=page.locator('//input[@type="checkbox"]');
-    this.login=page.getByRole('button',{'name':'Login'});
+    this.userID='User ID';
+    this.password ='Password';
+    this.checkbox='//input[@type="checkbox"]';
+    this.login='button',{'name':'Login'};
 }
 
 async goto(){
@@ -17,11 +17,9 @@ async goto(){
 async validLogin(username,password)
 {
     await this.page.waitForTimeout(3000);
-    await this.userID.fill(username,{timeout:3000})
-    await this.password.fill(password)
-    await this.checkbox.check()
-    await this.login.click({waitForTimeout:5000})
+    await this.page.getByLabel(this.userID).fill(username,{timeout:3000});
+    await this.page.getByLabel(this.password).fill(password);
+    await this.page.locator(this.checkbox).check()
+    await this.page.getByRole(this.login).click({waitForTimeout:5000})
 }
 }
-
-module.exports={LoginPage}
