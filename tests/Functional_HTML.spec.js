@@ -1,94 +1,76 @@
 const {test,expect}=require('@playwright/test');
 const {LoginPage}=require('../PageObjectModel/LoginPage') //imported from pom
 const {HomePage}=require('../PageObjectModel/HomePage')
+const {historyPage, HistoryPage}=require('../PageObjectModel/HistoryPage')
 
-test.beforeEach("login page",async({page})=>{
+test.beforeEach("login page",async({browser,page})=>{
     const loginpage=new LoginPage(page) //created an object of Loginpage to fetch details
     const username='pradeep.kumar@fibonalabs.com'
     const password='pradeep@123'
 
-    loginpage.goto()
-    loginpage.validLogin(username,password)
+    await loginpage.goto()
+    await loginpage.validLogin(username,password)
 })
+
+test.afterEach("close the window",async({page})=>{
+    await page.close()
+})
+///////////////////////////////////////////////////////////////////////////////
 
 test("Home Page validation: New Chat, search textfield", async({page})=>{
     const homepage=new HomePage(page)
     const input='How are these trends influencing global energy policies?'
 
-    homepage.newChatHovering() // mouse hovering
-    homepage.searchResults(input) 
+    await homepage.newChatHovering() // mouse hovering
+    await homepage.searchResults(input) 
 })
 
-// test("3 vertical dot: Resource dropdown",async({page})=>{
-//     const homepage=new HomePage()
+test("3 vertical dot: Resource dropdown",async({page})=>{
+    const homepage=new HomePage(page)
     
-//     homepage.three_vertical_dot_()
-//     homepage.resourceDropdown10_()
-//     homepage.resourceDropdown20_()
-//     homepage.resourceDropdown30_()
-//     homepage.resourceDropdown40_()
-//     homepage.resourceDropdown50_()
-//     homepage.closeButton_()
-// })
+    await homepage.three_vertical_dot_()
+    await homepage.resourceDropdown10_()
+    await homepage.resourceDropdown20_()
+    await homepage.resourceDropdown30_()
+    await homepage.resourceDropdown40_()
+    await homepage.resourceDropdown50_()
+    await homepage.closeButton_()
+})
 
-// test("3 vertical dot: Creativity: Dropdown",async({page})=>{
-//     const homepage=new HomePage()
-//     const input='How are these trends influencing global energy policies?'
+test("3 vertical dot: Creativity: Dropdown",async({page})=>{
+    const homepage=new HomePage(page)
+    const input='How are these trends influencing global energy policies?'
     
-//     homepage.three_vertical_dot_()
-//     homepage.CreativityMedium_()
-//     homepage.CreativityHigh_()
-//     homepage.CreativityLow_()
-//     homepage.closeButton_()
-//     homepage.searchResults(input) 
-// })
+    await homepage.three_vertical_dot_()
+    await homepage.CreativityHigh_()
+    await homepage.CreativityLow_()
+    await homepage.CreativityMedium_()
+    await homepage.closeButton_()
+})
 
-// test("3 vertical dot: History,Report,logout",async({page})=>{
-    
-//     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
-//     const history=page.locator("//p[.='History']")
-//     const report=page.locator("//p[.='Reports']")
-//     const close=page.locator("//button[.='Close']")
-//     const logout=page.locator("//button[.='Logout']")
+test("3 vertical dot: History,Report,logout",async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
 
-//     await three_vertical_dot.click() //3 vertical dot 
-//     await history.click({waitForTimeout:3000})
-//     await close.click()
-//     //report
-//     await three_vertical_dot.click({waitForTimeout:3000}) //3 vertical dot 
-//     await report.click()
-//     await close.click()
-//     //logout
-//     await three_vertical_dot.click({waitForTimeout:3000}) //3 vertical dot 
-//     await logout.click()
-// })
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.closeButton()
+    await homepage.three_vertical_dot_()
+    await homepage.reportPage_()
+    await historyPage.closeButton()
+    await homepage.three_vertical_dot_()
+    await homepage.logoutButton_()
+})
 
-// test("History : Existing results, Delete the first result ", async({page})=>{
-//     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
-//     const history=page.locator("//p[.='History']")
-//     const close=page.locator("//button[.='Close']")
+test("History : Existing results, Delete the first result ", async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
+    const searchInput='How are these trends influencing global energy policies?'
 
-//     const searchNames=page.locator('.group')
-//     const searchInput='How are these trends influencing global energy policies?'
-
-//     await three_vertical_dot.click({waitForTimeout:3000})
-//     await history.click()
-//     expect(await page.locator(".flex-grow p").first().textContent()).toEqual(searchInput)
-// // if a dynamic input matches with existing results then it will delete 
-//     const count=await searchNames.count()
-//     for(let i=0;i<count;++i)
-//     {
-//         if(await searchNames.nth(i).locator('p').textContent()===searchInput)
-//         {
-//             await searchNames.nth(i).locator('svg').click()
-//             break
-//         }
-//     }
-//     await page.getByText('Delete').click() 
-// //    expect.soft(await page.locator('.flex-1 b')).textContent().toEqual(searchInput)
-//     await page.locator("//button[.='Delete']").click({delay:3000})
-//     await close.click()    
-// })
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.removeFirstSearchHistoryEntry(searchInput)
+})
 
 // test("Combine the first two results",async({page})=>{
 //     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
@@ -134,8 +116,3 @@ test("Home Page validation: New Chat, search textfield", async({page})=>{
 //     await page.getByText('Close').click()
 //     await page.getByText('Close').click()
 // })
-
-// hooks
-test.afterEach("close the window",async({page})=>{
-    await page.close()
-})

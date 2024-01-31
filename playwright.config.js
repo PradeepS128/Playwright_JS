@@ -22,6 +22,7 @@ module.exports = defineConfig({
     browserName:'chromium',
 // 'webkit' is a safari engine
     trace: 'on-first-retry',
+    video: 'retain-on-failure'
 //    headless: false
   },
 
