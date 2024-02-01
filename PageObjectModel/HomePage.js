@@ -35,20 +35,24 @@ exports.HomePage=class HomePage
         this.close="//button[.='Close']"
         //close button
         this.closeButton="//button[contains(@class,'options-button')]"
+        //validation   
     }
 
     async newChatHovering(){
         await this.page.locator(this.AIIcon).hover()
 //        expect.soft(await this.page.locator(this.newChat).textContent()).toEqual('New Chat') //text extraction and soft assertion
     }
-    async searchResults(input){
-//      await expect(this.searchTextField).toBeEditable() // textfield validation
-        await this.page.locator(this.searchTextField).fill(input,{waitForTimeout:3000})
+
+    async searchTextField_(input){
+    await this.page.locator(this.searchTextField).fill(input,{waitForTimeout:3000})
+}
+
+    async searchResults(){
         await this.page.locator(this.searchButton).click()
-        await this.page.waitForTimeout(15000)     
+        await this.page.waitForTimeout(20000)     
     }
     async three_vertical_dot_(){
-        await this.page.locator(this.three_vertical_dot).click({waitForTimeout:3000})    }
+        await this.page.locator(this.three_vertical_dot).click()    }
 
     async resourceDropdown10_(){
         await this.page.locator(this.resourceDropdown10).hover({waitForTimeout:1000});

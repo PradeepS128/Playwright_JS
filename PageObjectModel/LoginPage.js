@@ -8,6 +8,8 @@ constructor(page)
     this.password ='Password';
     this.checkbox='//input[@type="checkbox"]';
     this.login='button',{'name':'Login'};
+    //
+
 }
 
 async goto(){
@@ -20,6 +22,8 @@ async validLogin(username,password)
     await this.page.getByLabel(this.userID).fill(username,{timeout:3000});
     await this.page.getByLabel(this.password).fill(password);
     await this.page.locator(this.checkbox).check()
-    await this.page.getByRole(this.login).click({waitForTimeout:5000})
+    await this.page.getByRole(this.login).click()
+    await this.page.waitForTimeout(2000)
 }
+
 }

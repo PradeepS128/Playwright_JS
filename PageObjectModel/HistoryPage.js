@@ -1,3 +1,5 @@
+const { expect } = require("chai")
+
 exports.HistoryPage=class HistoryPage
 {
 constructor(page)
@@ -6,11 +8,46 @@ constructor(page)
     this.searchNames='.group'
     this.delete="//span[.='Delete']"
     this.popupDelete="//button[.='Delete']"
-    this.close="//button[.='Close']"
+//  this.close="//button[.='Close']"
+    this.close=page.getByRole('button', { name: 'Close' })
+    this.ThreeverticalDot=".shadow-btn-shadow svg"
+    this.combineChats="//p[.='Combine Chats']"
+    this.checkedCombineChats= page.getByText('Combine chats')
+    this.resultCheckbox='//input[@type="checkbox"]'
+    this.genaratereport_3VerticalDot="//p[.='Generate Report']"
+    this.genaratereport_colored=page.getByRole('button', { name: 'Generate Report' })
+    //vali
+
+}
+async genaratereport_3VerticalDot_(){
+    await this.page.locator(this.genaratereport_3VerticalDot).click()
 }
 
+async genaratereport_colored_(){
+    await this.genaratereport_colored.click()
+    await this.page.waitForTimeout(5000)
+}
+
+async combinechats_(){
+    await this.page.locator(this.combineChats).click()
+}
+
+async selectChats_(count){
+    for(let i=0;i<count;++i){
+        await this.page.locator(this.resultCheckbox).nth(i).click({waitForTimeout:1000})
+    }
+}
+
+async selectCombinedChats(){
+    await this.checkedCombineChats.click()
+}
+
+async threeverticalDot_historyPage(){
+    await this.page.locator(this.ThreeverticalDot).click({delay:5000})
+}
 async closeButton(){
-    await this.page.locator(this.close).click()
+    await this.close.click()
+    await this.page.waitForTimeout(2000)
 }
 
 async removeFirstSearchHistoryEntry(searchInput){
@@ -35,7 +72,7 @@ async removeFirstSearchHistoryEntry(searchInput){
     }
     await this.page.locator(this.delete).click() 
     await this.page.locator(this.popupDelete).click({delay:3000})
-    await this.page.locator(this.close).click()    
+    await this.close.click()    
 }
 }
 

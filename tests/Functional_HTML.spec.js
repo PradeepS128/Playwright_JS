@@ -1,7 +1,8 @@
 const {test,expect}=require('@playwright/test');
 const {LoginPage}=require('../PageObjectModel/LoginPage') //imported from pom
 const {HomePage}=require('../PageObjectModel/HomePage')
-const {historyPage, HistoryPage}=require('../PageObjectModel/HistoryPage')
+const {HistoryPage}=require('../PageObjectModel/HistoryPage')
+const {ReportPage}=require('../PageObjectModel/ReportPage')
 
 test.beforeEach("login page",async({browser,page})=>{
     const loginpage=new LoginPage(page) //created an object of Loginpage to fetch details
@@ -9,23 +10,24 @@ test.beforeEach("login page",async({browser,page})=>{
     const password='pradeep@123'
 
     await loginpage.goto()
-    await loginpage.validLogin(username,password)
+   await loginpage.validLogin(username,password)
 })
 
 test.afterEach("close the window",async({page})=>{
+    await page.waitForTimeout(2000)
     await page.close()
 })
 ///////////////////////////////////////////////////////////////////////////////
-
-test("Home Page validation: New Chat, search textfield", async({page})=>{
+test("@Smoke_01_Home Page validation: New Chat, search textfield", async({page})=>{
     const homepage=new HomePage(page)
     const input='How are these trends influencing global energy policies?'
 
     await homepage.newChatHovering() // mouse hovering
-    await homepage.searchResults(input) 
+    await homepage.searchTextField_(input)
+    await homepage.searchResults() 
 })
 
-test("3 vertical dot: Resource dropdown",async({page})=>{
+test("_02_Three vertical dot: Resource dropdown",async({page})=>{
     const homepage=new HomePage(page)
     
     await homepage.three_vertical_dot_()
@@ -37,7 +39,7 @@ test("3 vertical dot: Resource dropdown",async({page})=>{
     await homepage.closeButton_()
 })
 
-test("3 vertical dot: Creativity: Dropdown",async({page})=>{
+test("_03_Three vertical dot: Creativity: Dropdown",async({page})=>{
     const homepage=new HomePage(page)
     const input='How are these trends influencing global energy policies?'
     
@@ -48,7 +50,7 @@ test("3 vertical dot: Creativity: Dropdown",async({page})=>{
     await homepage.closeButton_()
 })
 
-test("3 vertical dot: History,Report,logout",async({page})=>{
+test("_04_Three vertical dot: History,Report,logout",async({page})=>{
     const homepage=new HomePage(page)
     const historyPage=new HistoryPage(page) 
 
@@ -62,7 +64,7 @@ test("3 vertical dot: History,Report,logout",async({page})=>{
     await homepage.logoutButton_()
 })
 
-test("History : Existing results, Delete the first result ", async({page})=>{
+test("_05_History : Existing results, Delete the first result ", async({page})=>{
     const homepage=new HomePage(page)
     const historyPage=new HistoryPage(page) 
     const searchInput='How are these trends influencing global energy policies?'
@@ -72,47 +74,54 @@ test("History : Existing results, Delete the first result ", async({page})=>{
     await historyPage.removeFirstSearchHistoryEntry(searchInput)
 })
 
-// test("Combine the first two results",async({page})=>{
-//     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
-//     const history=page.locator("//p[.='History']")
-//     const history_3vertical_Dot=page.locator(".shadow-btn-shadow svg")
+test("_06_Combine the results by selecting N check boxes",async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
+    const checkboxCount=3;
+    
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.threeverticalDot_historyPage()
+    await historyPage.combinechats_()
+    await historyPage.selectChats_(checkboxCount)
+    await historyPage.selectCombinedChats()
+    await historyPage.closeButton()
+})
+test("_07_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
+    const checkboxCount=2;
+    
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.threeverticalDot_historyPage()
+    await historyPage.genaratereport_3VerticalDot_()
+    await historyPage.selectChats_(checkboxCount)
+    await historyPage.genaratereport_colored_()
+    await historyPage.closeButton()
+})
 
-//     await three_vertical_dot.click()
-//     await history.click()
-//     await history_3vertical_Dot.click({waitForTimeout:3000}) 
-//     await page.locator("//p[.='Combine Chats']").click()
-//     await page.locator('//input[@type="checkbox"]').nth(0).click()
-//     await page.locator('//input[@type="checkbox"]').nth(1).click()
-//     await page.getByText('Combine chats').click()
-//     await page.getByText('Close').click()    
-//     await page.waitForTimeout(3000)
-// })
+test("_08_Edit Report Title and Verify Reflection on Reports Page",async({page})=>{
+    const homepage=new HomePage(page)
+    const reportpage=new ReportPage(page) 
+    const input="Q1: How are these trends influencing global energy policies?"
 
-// test("Genarate Report by selecting content and resources",async({page})=>{
-//     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
-//     const history=page.locator("//p[.='History']")
-//     const history_3vertical_Dot=page.locator(".shadow-btn-shadow svg")
+    await homepage.three_vertical_dot_()
+    await homepage.reportPage_()
+    await reportpage.first_title_search_results()
+    await reportpage.editTitle()
+    await reportpage.updateReportTitle(input)
+    await reportpage.saveReportTitle()
+    await reportpage.closeButton()
+    await reportpage.closeButton()
+})
 
-//     await three_vertical_dot.click()
-//     await history.click()
-//     await history_3vertical_Dot.click({waitForTimeout:3000}) 
-//     await page.getByText("Generate Report").click()
-//     await page.locator('//input[@type="checkbox"]').nth(0).click()
-//     await page.locator('//input[@type="checkbox"]').nth(1).click()
-//     await page.getByText("Generate Report").click()
-//     await page.getByText('Close').click()
-// })
+test("_09_Home Page validation: New Chat, search textfield", async({page})=>{
+    const homepage=new HomePage(page)
+    const input='How are these trends influencing global energy policies?'
 
-// test("Reports: Editing a report title and reflecting on a reports page",async({page})=>{
-//     const three_vertical_dot=page.locator("//button[contains(@class,'options-button')]")
-//     const report=page.locator("//p[.='Reports']")
+    await homepage.newChatHovering() // mouse hovering
+    await homepage.searchTextField_(input)
+    await homepage.searchResults() 
+})
 
-//     await three_vertical_dot.click()
-//     await report.click()
-//     await page.locator(".text-left span").first().click()
-//     await page.locator(".rounded-full svg").click()
-//     await page.locator('//textarea[@id="chat-title"]').fill("Q1: How are these trends influencing global energy policies?")
-//     await page.getByText('Save').click()
-//     await page.getByText('Close').click()
-//     await page.getByText('Close').click()
-// })

@@ -6,13 +6,13 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
-  timeout:30 * 1000,
+  timeout:60 * 1000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: 1,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -21,8 +21,8 @@ module.exports = defineConfig({
   use: {
     browserName:'chromium',
 // 'webkit' is a safari engine
-    trace: 'on-first-retry',
-    video: 'retain-on-failure'
+    trace: 'on-first-retry'
+//    video: 'retain-on-failure'
 //    headless: false
   },
 
