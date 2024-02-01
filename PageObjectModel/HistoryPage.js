@@ -17,8 +17,16 @@ constructor(page)
     this.genaratereport_3VerticalDot="//p[.='Generate Report']"
     this.genaratereport_colored=page.getByRole('button', { name: 'Generate Report' })
     //vali
-
+    this.Content="//p[.='Content']"
+    this.Resources="//p[.='Resources']"
 }
+async contentButton(){
+    await this.page.locator(this.Content).click() }
+
+async resourcesButton(){
+    await this.page.locator(this.Resources).click() }
+
+
 async genaratereport_3VerticalDot_(){
     await this.page.locator(this.genaratereport_3VerticalDot).click()
 }

@@ -18,7 +18,7 @@ test.afterEach("close the window",async({page})=>{
     await page.close()
 })
 ///////////////////////////////////////////////////////////////////////////////
-test("@Smoke_01_Home Page validation: New Chat, search textfield", async({page})=>{
+test("_01_Home Page validation: New Chat, search textfield", async({page})=>{
     const homepage=new HomePage(page)
     const input='How are these trends influencing global energy policies?'
 
@@ -87,6 +87,7 @@ test("_06_Combine the results by selecting N check boxes",async({page})=>{
     await historyPage.selectCombinedChats()
     await historyPage.closeButton()
 })
+
 test("_07_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
     const homepage=new HomePage(page)
     const historyPage=new HistoryPage(page) 
@@ -101,7 +102,37 @@ test("_07_Generate Report with Selected Content and Resources (N Checkboxes)",as
     await historyPage.closeButton()
 })
 
-test("_08_Edit Report Title and Verify Reflection on Reports Page",async({page})=>{
+test("_08_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
+    const checkboxCount=2;
+    
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.threeverticalDot_historyPage()
+    await historyPage.genaratereport_3VerticalDot_()
+    await historyPage.selectChats_(checkboxCount)
+    await historyPage.contentButton()
+    await historyPage.genaratereport_colored_()
+    await historyPage.closeButton()
+})
+
+test("_09_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
+    const homepage=new HomePage(page)
+    const historyPage=new HistoryPage(page) 
+    const checkboxCount=2;
+    
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.threeverticalDot_historyPage()
+    await historyPage.genaratereport_3VerticalDot_()
+    await historyPage.selectChats_(checkboxCount)
+    await historyPage.resourcesButton()
+    await historyPage.genaratereport_colored_()
+    await historyPage.closeButton()
+})
+
+test("_10_Edit Report Title and Verify Reflection on Reports Page",async({page})=>{
     const homepage=new HomePage(page)
     const reportpage=new ReportPage(page) 
     const input="Q1: How are these trends influencing global energy policies?"
@@ -116,7 +147,7 @@ test("_08_Edit Report Title and Verify Reflection on Reports Page",async({page})
     await reportpage.closeButton()
 })
 
-test("_09_Home Page validation: New Chat, search textfield", async({page})=>{
+test("_11_Home Page validation: New Chat, search textfield", async({page})=>{
     const homepage=new HomePage(page)
     const input='How are these trends influencing global energy policies?'
 
