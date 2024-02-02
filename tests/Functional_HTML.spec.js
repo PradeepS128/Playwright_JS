@@ -102,7 +102,7 @@ test("_07_Generate Report with Selected Content and Resources (N Checkboxes)",as
     await historyPage.closeButton()
 })
 
-test("_08_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
+test("_08_Generate Report with Selected Contents (N Checkboxes)",async({page})=>{
     const homepage=new HomePage(page)
     const historyPage=new HistoryPage(page) 
     const checkboxCount=2;
@@ -117,7 +117,8 @@ test("_08_Generate Report with Selected Content and Resources (N Checkboxes)",as
     await historyPage.closeButton()
 })
 
-test("_09_Generate Report with Selected Content and Resources (N Checkboxes)",async({page})=>{
+
+test("_09_Generate Report with Selected Resources (N Checkboxes)",async({page})=>{
     const homepage=new HomePage(page)
     const historyPage=new HistoryPage(page) 
     const checkboxCount=2;
@@ -155,4 +156,3 @@ test("_11_Home Page validation: New Chat, search textfield", async({page})=>{
     await homepage.searchTextField_(input)
     await homepage.searchResults() 
 })
-

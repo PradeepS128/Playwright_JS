@@ -45,7 +45,7 @@ exports.HomePage=class HomePage
 
     async searchTextField_(input){
     await this.page.locator(this.searchTextField).fill(input,{waitForTimeout:3000})
-}
+    }
 
     async searchResults(){
         await this.page.locator(this.searchButton).click()
