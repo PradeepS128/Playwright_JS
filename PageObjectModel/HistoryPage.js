@@ -22,6 +22,13 @@ constructor(page)
 async contentButton(){
     await this.page.locator(this.Content).click() }
 
+async  closeButtonGenerateReport(){
+    await this.page.locator(this.closeGenerateReport).click() }
+
+async  closeButtonCombineChats(){
+    await this.page.locator(this.closeCombineChats).click() }
+    
+
 async resourcesButton(){
     await this.page.locator(this.Resources).click() }
 
@@ -30,9 +37,14 @@ async genaratereport_3VerticalDot_(){
     await this.page.locator(this.genaratereport_3VerticalDot).click()
 }
 
+async history_3VerticalDot_(){
+    await this.page.locator(this.historyVerticalDot).click()
+}
+
 async genaratereport_colored_(){
-    await this.genaratereport_colored.click()
-    await this.page.waitForTimeout(5000)
+    // await this.genaratereport_colored.click()
+    // await this.page.waitForTimeout(5000)
+    await this.page.locator(this.genaratereport_colored).click({waitForTimeout:3000})
 }
 
 async combinechats_(){
