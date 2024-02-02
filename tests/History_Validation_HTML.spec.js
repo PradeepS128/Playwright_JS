@@ -17,7 +17,7 @@ test.afterEach("close the window", async ({ page }) => {
   await page.close();
 });
 ////////////////////////////////////////////
-test.skip("Validation: History share button", async ({ page }) => {
+test("Validation: History share button", async ({ page }) => {
   const homepage = new HomePage(page);
   const historypage = new HistoryPage(page);
   homepage.three_vertical_dot_();
@@ -28,7 +28,7 @@ test.skip("Validation: History share button", async ({ page }) => {
   expect(isShareButtonDisabled).toBeTruthy();
 });
 
-test.skip("Validation: Created by", async ({page}) => {
+test("Validation: Created by", async ({page}) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -36,7 +36,21 @@ test.skip("Validation: Created by", async ({page}) => {
     await expect(page.locator(historypage.createdBy)).toContainText("Created by");
 });
 
-test.skip("Validation: History generate report selected chats", async ({ page }) => {
+
+
+//////////////////////
+test("Validation: History generate report title", async ({ page }) => {
+    const homepage = new HomePage(page);
+    const historypage = new HistoryPage(page);
+    await homepage.three_vertical_dot_();
+    await homepage.historyPage_();
+    await historypage.threeverticalDot_historyPage();
+    await historypage.genaratereport_colored_();
+    await expect(page.locator(historypage.generateReportTitle)).toContainText("History");
+});
+
+
+test("Validation: History generate report selected chats", async ({ page }) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -46,7 +60,7 @@ test.skip("Validation: History generate report selected chats", async ({ page })
     await expect(page.locator(historypage.selectedGenerateReport)).toContainText("Selected chats");
 });
 
-test.skip("Validation: History generate report total chats", async ({ page }) => {
+test("Validation: History generate report total chats", async ({ page }) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -56,7 +70,7 @@ test.skip("Validation: History generate report total chats", async ({ page }) =>
     await expect(page.locator(historypage.totalChatsGenerateReport)).toContainText("Total chats");
 });
 
-test.skip("Validation: History generate report created by", async ({ page }) => {
+test("Validation: History generate report created by", async ({ page }) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -66,7 +80,7 @@ test.skip("Validation: History generate report created by", async ({ page }) => 
     await expect(page.locator(historypage.createdByGenerateReport)).toContainText("Created by");
 });
 
-test.skip("Validation: close generate report",async({page}) => {
+test("Validation: close generate report",async({page}) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -75,7 +89,20 @@ test.skip("Validation: close generate report",async({page}) => {
     await historypage.genaratereport_colored_();
     await historypage.closeButtonGenerateReport();
 })
-test.skip("Validation: History combine chat selected chats", async ({ page }) => {
+
+///////////////////////////////
+test("Validation: History combine chat title",async({page}) => {
+    const homepage = new HomePage(page);
+    const historypage = new HistoryPage(page);
+    await homepage.three_vertical_dot_();
+    await homepage.historyPage_();
+    await historypage.threeverticalDot_historyPage();
+    await historypage.combinechats_();
+    await expect(page.locator(historypage.combineChatsTitle)).toContainText("History");
+})
+
+
+test("Validation: History combine chat selected chats", async ({ page }) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -85,7 +112,7 @@ test.skip("Validation: History combine chat selected chats", async ({ page }) =>
     await expect(page.locator(historypage.selectedCombinedChats)).toContainText("Selected chats");
 });
 
-test.skip("Validation: History combine chat total chats", async ({ page }) => {
+test("Validation: History combine chat total chats", async ({ page }) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
@@ -105,7 +132,7 @@ test("Validation: History combine chat created by", async ({ page }) => {
     await expect(page.locator(historypage.createdByCombineChats)).toContainText("Created by");
 });
 
-test.skip("Validation: close combine chat",async({page}) => {
+test("Validation: close combine chat",async({page}) => {
     const homepage = new HomePage(page);
     const historypage = new HistoryPage(page);
     await homepage.three_vertical_dot_();
