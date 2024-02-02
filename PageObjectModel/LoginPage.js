@@ -4,6 +4,7 @@ exports.LoginPage=class LoginPage
 constructor(page)
 {
     this.page=page;
+    this.logo='Articul8 log';
     this.userID='User ID';
     this.password ='Password';
     this.checkbox='//input[@type="checkbox"]';
