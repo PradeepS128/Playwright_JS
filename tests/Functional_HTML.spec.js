@@ -24,7 +24,7 @@ test("_01_Home Page validation: New Chat, search textfield", async({page})=>{
 
     await homepage.newChatHovering() // mouse hovering
     await homepage.searchTextField_(input)
-    await homepage.searchResults() 
+    await homepage.searchResults()
 })
 
 test("_02_Three vertical dot: Resource dropdown",async({page})=>{
