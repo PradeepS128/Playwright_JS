@@ -38,7 +38,7 @@ async genaratereport_3VerticalDot_(){
 }
 
 async history_3VerticalDot_(){
-    await this.page.locator(this.historyVerticalDot).click()
+    await this.page.locator(this.historyVerticalDot).nth(0).click()
 }
 
 async genaratereport_colored_(){
