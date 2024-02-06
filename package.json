@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "functional_HTML":"npx playwright test Functional_HTML.spec.js --headed --reporter=line,allure-playwright",
-    "Validation_HTML":"npx playwright test Validation_HTML.spec.js --headed --reporter=line,allure-playwright"
+    "functional_HTML": "npx playwright test Functional_HTML.spec.js",
+    "Validation_HTML": "npx playwright test Validation_HTML.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,8 @@
     "allure-playwright": "^2.12.0",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "playwright": "^1.40.1"
+    "playwright": "^1.41.2",
+    "zaproxy": "^2.0.0-rc.4"
   },
   "dependencies": {
     "playwright-core": "^1.40.1"

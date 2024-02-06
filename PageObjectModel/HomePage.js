@@ -97,10 +97,9 @@ exports.HomePage=class HomePage
 
      async reportPage_(){
         await this.page.locator(this.report).click()
-//        await this.page.locator(this.close).click()    
          }
     async logoutButton_(){
-        await this.page.locator(this.logout).click()    
+        await this.page.locator(this.logout).click({waitForTimeout:2000})    
     }     
 
     }
