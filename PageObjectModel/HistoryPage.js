@@ -8,9 +8,9 @@ constructor(page)
     this.searchNames='.group'
     this.delete="//span[.='Delete']"
     this.popupDelete="//button[.='Delete']"
-//  this.close="//button[.='Close']"
-    this.close=page.getByRole('button', { name: 'Close' })
-    this.ThreeverticalDot=".shadow-btn-shadow svg"
+    this.close="div #historyCloseBtn"
+//  this.close=page.getByRole('button', { name: 'Close' })
+    this.ThreeverticalDot="#moreOptions"
     this.combineChats="//p[.='Combine Chats']"
     this.checkedCombineChats= page.getByText('Combine chats')
     this.resultCheckbox='//input[@type="checkbox"]'
@@ -54,7 +54,7 @@ async threeverticalDot_historyPage(){
     await this.page.locator(this.ThreeverticalDot).click({delay:5000})
 }
 async closeButton(){
-    await this.close.click()
+    await this.page.locator(this.close).click()
     await this.page.waitForTimeout(2000)
 }
 
@@ -80,7 +80,7 @@ async removeFirstSearchHistoryEntry(searchInput){
     }
     await this.page.locator(this.delete).click() 
     await this.page.locator(this.popupDelete).click({delay:3000})
-    await this.close.click()    
+    await this.page.locator(this.close).click()
 }
 }
 

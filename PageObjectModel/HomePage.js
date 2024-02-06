@@ -3,12 +3,12 @@ exports.HomePage=class HomePage
     constructor(page)
     {   
         this.page= page;
-        this.AIIcon='//img[@alt="articul8"]'
+        this.AIIcon='//img[@alt="AI logo"]'
         this.newChat="//span[.='New Chat']"
-        this.searchTextField='input[placeholder="Search..."]'
-        this.searchButton='//div[@class="relative w-full flex-1"]//button'
+        this.searchTextField='//textarea[@placeholder="Search..."]'
+        this.searchButton='#sendMessage'
         //three vertical dot
-        this.three_vertical_dot="//button[contains(@class,'options-button')]"
+        this.three_vertical_dot="button #moreOptions"
         this.resourceDropdown10="//button[.='Resources: 10']"
         this.resourceDropdown20="//button[.='Resources: 20']"
         this.resourceDropdown30="//button[.='Resources: 30']"
@@ -21,9 +21,9 @@ exports.HomePage=class HomePage
         this.selectedDropdown40="//button[.=40]"
         this.selectedDropdown50="//button[.=50]"
         // creativity
-        this.High="(//button[contains(@class,'w-full')])[3]"
-        this.low="(//button[contains(@class,'w-full')])[1]"
-        this.Medium="(//button[contains(@class,'w-full')])[2]"
+        this.High="#High"
+        this.low="#Low"
+        this.Medium="#Medium"
         this.CreativityMedium="//button[.='Creativity: medium']"
         this.CreativityHigh="//button[.='Creativity: high']"
         this.CreativityLow="//button[.='Creativity: low']"
@@ -31,16 +31,12 @@ exports.HomePage=class HomePage
         this.history="//button[.='History']"
         this.report="//button[.='Reports']"
         this.logout="//button[.='Logout']"    
-        // close button inside history ot report button
-        this.close="//button[.='Close']"
         //close button
-        this.closeButton="//button[contains(@class,'options-button')]"
-        //validation   
+        this.closeButton="//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]"
     }
 
     async newChatHovering(){
         await this.page.locator(this.AIIcon).hover()
-//        expect.soft(await this.page.locator(this.newChat).textContent()).toEqual('New Chat') //text extraction and soft assertion
     }
 
     async searchTextField_(input){
@@ -52,47 +48,46 @@ exports.HomePage=class HomePage
         await this.page.waitForTimeout(20000)     
     }
     async three_vertical_dot_(){
-        await this.page.locator(this.three_vertical_dot).click()    }
+        await this.page.locator(this.three_vertical_dot).click({waitForTimeout:1000})    }
 
     async resourceDropdown10_(){
-        await this.page.locator(this.resourceDropdown10).hover({waitForTimeout:1000});
+        await this.page.locator(this.resourceDropdown10).hover({waitForTimeout:2000});
         await this.page.locator(this.selectedDropdown10).click()    }
 
     async resourceDropdown20_(){
-        await this.page.locator(this.resourceDropdown10).hover({waitForTimeout:1000});
+        await this.page.locator(this.resourceDropdown10).hover({waitForTimeout:2000});
         await this.page.locator(this.selectedDropdown20).click()   }
   
     async resourceDropdown30_(){
-        await this.page.locator(this.resourceDropdown20).hover({waitForTimeout:1000});
+        await this.page.locator(this.resourceDropdown20).hover({waitForTimeout:2000});
         await this.page.locator(this.selectedDropdown30).click()    }
 
     async resourceDropdown40_(){
-        await this.page.locator(this.resourceDropdown30).hover({waitForTimeout:1000});
+        await this.page.locator(this.resourceDropdown30).hover({waitForTimeout:2000});
         await this.page.locator(this.selectedDropdown40).click()     }
 
     async resourceDropdown50_(){
-        await this.page.locator(this.resourceDropdown40).hover({waitForTimeout:1000});
+        await this.page.locator(this.resourceDropdown40).hover({waitForTimeout:2000});
         await this.page.locator(this.selectedDropdown50).click()     }
 
     async closeButton_(){
         await this.page.locator(this.closeButton).click()    }
 
      async CreativityHigh_(){
-        await this.page.locator(this.CreativityMedium).hover({waitForTimeout:1000})
+        await this.page.locator(this.CreativityMedium).hover({waitForTimeout:2000})
         await this.page.locator(this.High).click()
      }   
      async CreativityLow_(){
-        await this.page.locator(this.CreativityHigh).hover({waitForTimeout:1000})
+        await this.page.locator(this.CreativityHigh).hover({waitForTimeout:2000})
         await this.page.locator(this.low).click()        
      }   
      async CreativityMedium_(){
-        await this.page.locator(this.CreativityLow).hover({waitForTimeout:1000})
+        await this.page.locator(this.CreativityLow).hover({waitForTimeout:2000})
         await this.page.locator(this.Medium).click()    
      }   
 
      async historyPage_(){
-        await this.page.locator(this.history).click({waitForTimeout:3000})
-//        await this.page.locator(this.close).click()    
+        await this.page.locator(this.history).click()
      }
 
      async reportPage_(){
@@ -101,6 +96,5 @@ exports.HomePage=class HomePage
     async logoutButton_(){
         await this.page.locator(this.logout).click({waitForTimeout:2000})    
     }     
-
     }
 
