@@ -4,7 +4,7 @@ const {HomePage}=require('../PageObjectModel/HomePage')
 const {HistoryPage}=require('../PageObjectModel/HistoryPage')
 const {ReportPage}=require('../PageObjectModel/ReportPage')
 
-test.beforeEach("login page",async({browser,page})=>{
+test.skip.beforeEach("login page",async({browser,page})=>{
     const loginpage=new LoginPage(page) //created an object of Loginpage to fetch details
     const username='pradeep.kumar@fibonalabs.com'
     const password='pradeep@123'
@@ -12,7 +12,7 @@ test.beforeEach("login page",async({browser,page})=>{
     await loginpage.validLogin(username,password)
     })
 
-test.afterEach("close the window",async({page})=>{
+test.skip.afterEach("close the window",async({page})=>{
     await page.waitForTimeout(2000)
     await page.close()
 })

@@ -8,7 +8,7 @@ exports.HomePage=class HomePage
         this.searchTextField='//textarea[@placeholder="Search..."]'
         this.searchButton='#sendMessage'
         //three vertical dot
-        this.three_vertical_dot="button #moreOptions"
+        this.three_vertical_dot="#chatMenu"
         this.resourceDropdown10="//button[.='Resources: 10']"
         this.resourceDropdown20="//button[.='Resources: 20']"
         this.resourceDropdown30="//button[.='Resources: 30']"
@@ -70,11 +70,11 @@ exports.HomePage=class HomePage
 
     async resourceDropdown50_(){
         await this.page.locator(this.resourceDropdown40).hover({waitForTimeout:2000});
-        await this.page.locator(this.selectedDropdown50).click()     }
-
+        await this.page.locator(this.selectedDropdown50).click()     
+    }
     async closeButton_(){
-        await this.page.locator(this.closeButton).click()    }
-
+        await this.page.locator(this.closeButton).click()    
+    }
      async CreativityHigh_(){
         await this.page.locator(this.CreativityMedium).hover({waitForTimeout:2000})
         await this.page.locator(this.High).click()
@@ -87,13 +87,11 @@ exports.HomePage=class HomePage
         await this.page.locator(this.CreativityLow).hover({waitForTimeout:2000})
         await this.page.locator(this.Medium).click()    
      }   
-
      async historyPage_(){
         const input=await this.history
         await input.waitFor()
         await input.click()
      }
-
      async reportPage_(){
         const input=await this.report
         await input.waitFor()

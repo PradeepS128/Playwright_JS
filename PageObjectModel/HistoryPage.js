@@ -9,8 +9,7 @@ constructor(page)
     this.delete="//span[.='Delete']"
     this.popupDelete="//button[.='Delete']"
     this.close="div #historyCloseBtn"
-//  this.close=page.getByRole('button', { name: 'Close' })
-    this.ThreeverticalDot="#moreOptions"
+    this.ThreeverticalDot="#historyMenu"
     this.combineChats="//p[.='Combine Chats']"
     this.checkedCombineChats= page.getByText('Combine chats')
     this.resultCheckbox='//input[@type="checkbox"]'

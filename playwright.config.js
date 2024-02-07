@@ -29,6 +29,7 @@ module.exports = defineConfig({
     video: 'retain-on-failure',
     headless: false,
     screenshot:'on',
+    viewport:{width:1920,height:1080}
   },
 
   /* Configure projects for major browsers */
