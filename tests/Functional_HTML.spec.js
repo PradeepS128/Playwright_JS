@@ -26,6 +26,8 @@ const setup=(page)=>{
     loginpage:new LoginPage(page)
 }}
 ///////////////////////////////////////////////////////////////////////////////
+// test.describe.configure({mode:'serial'})
+test.describe.configure({mode:'parallel'})
 test("_01_Home Page validation: New Chat, search textfield", async({page})=>{
     const {homepage,input}=setup(page)
     await homepage.newChatHovering() // mouse hovering

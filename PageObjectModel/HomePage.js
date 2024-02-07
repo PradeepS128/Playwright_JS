@@ -28,15 +28,15 @@ exports.HomePage=class HomePage
         this.CreativityHigh="//button[.='Creativity: high']"
         this.CreativityLow="//button[.='Creativity: low']"
         // history, report, logout
-        this.history="//button[.='History']"
-        this.report="//button[.='Reports']"
+        this.history=page.getByRole('button', { name: 'History' })
+        this.report=page.getByRole('button', { name: 'Reports' })
         this.logout="//button[.='Logout']"    
         //close button
         this.closeButton="//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]"
     }
 
     async newChatHovering(){
-        await this.page.locator(this.AIIcon).hover()
+        await this.page.locator(this.AIIcon).hover({waitForTimeout:2000})
     }
 
     async searchTextField_(input){
@@ -44,7 +44,9 @@ exports.HomePage=class HomePage
     }
 
     async searchResults(){
-        await this.page.locator(this.searchButton).click()
+        const input=await this.page.locator(this.searchButton)
+        await input.waitFor()
+        await input.click()
         await this.page.waitForTimeout(20000)     
     }
     async three_vertical_dot_(){
@@ -87,14 +89,17 @@ exports.HomePage=class HomePage
      }   
 
      async historyPage_(){
-        await this.page.locator(this.history).click()
+        const input=await this.history
+        await input.waitFor()
+        await input.click()
      }
 
      async reportPage_(){
-        await this.page.locator(this.report).click()
+        const input=await this.report
+        await input.waitFor()
+        await input.click()
          }
     async logoutButton_(){
         await this.page.locator(this.logout).click({waitForTimeout:2000})    
     }     
     }
-
