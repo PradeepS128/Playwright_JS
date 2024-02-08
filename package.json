@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "functional_HTML": "npx playwright test Functional_HTML.spec.js",
-    "Validation_HTML": "npx playwright test Validation_HTML.spec.js"
+    "E2E_HTML": "npx playwright test"
   },
   "keywords": [],
   "author": "",

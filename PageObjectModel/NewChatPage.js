@@ -7,9 +7,8 @@ this.popupClose="div #closeBtn"
 this.ratings='#ratingIcon'
 this.commentBoxIcon="#commentsIcon"
 this.commentBoxTextarea="#chat-title"
-this.YesButton="tickIconBtn"
+this.YesButton="#tickIconBtn"
 }
-
 async htmlDocFiles(){
     await this.page.locator(this.htmlDoc).nth(0).click()
     await this.page.waitForTimeout(3000)
@@ -21,15 +20,14 @@ async htmlDocScrol(){
     const elementHandle=await this.page.locator(this.htmlDoc).last()
     await elementHandle.scrollIntoViewIfNeeded()
 }
-async userRatings(count){
-    for(let i=0;i<count;++i){
-        await this.page.locator(this.ratings).nth(i).click()
-        break   
-    }
+async userRatings(){
+        await this.page.locator(this.ratings).nth(2).click()
+        await this.page.waitForTimeout(2000)
 }
 async customerFeedback(input){
     await this.page.locator(this.commentBoxIcon).click()
     await this.page.locator(this.commentBoxTextarea).fill(input)
+    await this.page.waitForTimeout(3000)
     await this.page.locator(this.YesButton).click()
 }
 }

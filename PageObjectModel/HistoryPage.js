@@ -38,25 +38,22 @@ async genaratereport_colored_(){
 async combinechats_(){
     await this.page.locator(this.combineChats).click()
 }
-
 async selectChats_(count){
     for(let i=0;i<count;++i){
         await this.page.locator(this.resultCheckbox).nth(i).click({waitForTimeout:1000})
     }
 }
-
 async selectCombinedChats(){
     await this.checkedCombineChats.click()
 }
-
 async threeverticalDot_historyPage(){
     await this.page.locator(this.ThreeverticalDot).click({delay:5000})
 }
 async closeButton(){
-    await this.page.locator(this.close).click()
-    await this.page.waitForTimeout(2000)
+    const input=await this.page.locator(this.close)
+    await input.waitFor({state: 'visible'})
+    await input.click()
 }
-
 async removeFirstSearchHistoryEntry(searchInput){
     // if a dynamic input matches with existing results then it will delete 
     // const count=await this.page.locator(this.searchNames).count()
@@ -82,5 +79,3 @@ async removeFirstSearchHistoryEntry(searchInput){
     await this.page.locator(this.close).click()
 }
 }
-
-

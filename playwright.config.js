@@ -1,7 +1,5 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
-
-
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -36,7 +34,11 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], 
+      headless:false,
+      trace:'on-first-retry',
+      video:'retain-on-failure'
+     },
     },
 
     {
@@ -49,21 +51,23 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+    {
+      name: 'Microsoft Edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    },
 
+    /* Test against mobile viewports. */
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5']},
+    },
+
+    {
+    name:'iphone_12',  
+    use: { ...devices['iPhone 12 Pro'], 
+     },
+   },
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
     // {
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
