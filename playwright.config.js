@@ -20,15 +20,6 @@ module.exports = defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    browserName:'chromium',
-// 'webkit' is a safari engine
-    trace: 'on',
-    video: 'retain-on-failure',
-    headless: false,
-    screenshot:'on',
-    viewport:{width:1920,height:1080}
-  },
 
   /* Configure projects for major browsers */
   projects: [
@@ -36,19 +27,29 @@ module.exports = defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], 
       headless:false,
+      trace:'on',
+      video:'on',
+      screenshot:'only-on-failure'
+     },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'],
+      headless:false,
       trace:'on-first-retry',
-      video:'retain-on-failure'
+      video:'retain-on-failure',
+      screenshot:'only-on-failure'
      },
     },
 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name:'safari',
+      use:{...devices['Desktop Safari'],
+      headless:false,
+      trace:'on-first-retry',
+      video:'retain-on-failure',
+      screenshot:'only-on-failure'
+    }
     },
 
     {
@@ -57,6 +58,7 @@ module.exports = defineConfig({
     },
 
     /* Test against mobile viewports. */
+    // Since our application is not mobile friendly , we need update our TC's specifically for  mobile devices to test on them.
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5']},

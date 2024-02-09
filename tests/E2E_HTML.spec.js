@@ -200,6 +200,7 @@ test("TC_20_Verify the functionality of user login, a popup allowing user to edi
     await reportpage.saveReportTitle()
     expect.soft(await page.locator("#reportTitle")).toHaveText(title)
 })
-// test("Verify the functionality of user login and user can enter multiple queries sequentially",async({page})=>{
-
-// })
+test("@smoke _Verify the functionality of user login and user can enter multiple queries sequentially",async({page})=>{
+    const {homepage,input}=setup(page)
+ 
+ })
