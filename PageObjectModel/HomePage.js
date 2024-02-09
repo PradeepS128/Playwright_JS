@@ -4,11 +4,13 @@ exports.HomePage=class HomePage
     {   
         this.page= page;
         this.AIIcon='//img[@alt="AI logo"]'
+        this.helloUserNameTitle="#userName"
+        this.welcomeMessageTitle="#welcomeMessage"
         this.newChat="//span[.='New Chat']"
         this.searchTextField='//textarea[@placeholder="Search..."]'
         this.searchButton='#sendMessage'
         //three vertical dot
-        this.three_vertical_dot="button #moreOptions"
+        this.three_vertical_dot="#chatMenu"
         this.resourceDropdown10="//button[.='Resources: 10']"
         this.resourceDropdown20="//button[.='Resources: 20']"
         this.resourceDropdown30="//button[.='Resources: 30']"
@@ -32,7 +34,7 @@ exports.HomePage=class HomePage
         this.report=page.getByRole('button', { name: 'Reports' })
         this.logout="//button[.='Logout']"    
         //close button
-        this.closeButton="//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]"
+        this.closeButton="#closeBtn"
     }
 
     async newChatHovering(){

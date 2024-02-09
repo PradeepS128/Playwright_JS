@@ -4,7 +4,9 @@ constructor(page)
 {
     this.page=page;
     this.userID='User ID';
+    this.userIDText="//label[.='User ID']"
     this.password ='Password';
+    this.passwordText="//label[.='Password']"
     this.checkbox='//input[@type="checkbox"]';
     this.login='button',{'name':'Login'};
     this.errorMsg="//p[.='Invalid credentials']"
