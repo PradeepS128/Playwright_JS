@@ -4,6 +4,8 @@ exports.HomePage=class HomePage
     {   
         this.page= page;
         this.AIIcon='//img[@alt="AI logo"]'
+        this.helloUserNameTitle="#userName"
+        this.welcomeMessageTitle="#welcomeMessage"
         this.newChat="//span[.='New Chat']"
         this.searchTextField='//textarea[@placeholder="Search..."]'
         this.searchButton='#sendMessage'
@@ -32,7 +34,7 @@ exports.HomePage=class HomePage
         this.report=page.getByRole('button', { name: 'Reports' })
         this.logout="//button[.='Logout']"    
         //close button
-        this.closeButton="//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]"
+        this.closeButton="#closeBtn"
     }
 
     async newChatHovering(){
@@ -70,11 +72,11 @@ exports.HomePage=class HomePage
 
     async resourceDropdown50_(){
         await this.page.locator(this.resourceDropdown40).hover({waitForTimeout:2000});
-        await this.page.locator(this.selectedDropdown50).click()     
-    }
+        await this.page.locator(this.selectedDropdown50).click()     }
+
     async closeButton_(){
-        await this.page.locator(this.closeButton).click()    
-    }
+        await this.page.locator(this.closeButton).click()    }
+
      async CreativityHigh_(){
         await this.page.locator(this.CreativityMedium).hover({waitForTimeout:2000})
         await this.page.locator(this.High).click()
@@ -87,11 +89,13 @@ exports.HomePage=class HomePage
         await this.page.locator(this.CreativityLow).hover({waitForTimeout:2000})
         await this.page.locator(this.Medium).click()    
      }   
+
      async historyPage_(){
         const input=await this.history
         await input.waitFor()
         await input.click()
      }
+
      async reportPage_(){
         const input=await this.report
         await input.waitFor()
