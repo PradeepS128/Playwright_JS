@@ -42,16 +42,16 @@ async history_3VerticalDot_(){
 }
 
 async genaratereport_colored_(){
-    // await this.genaratereport_colored.click()
-    // await this.page.waitForTimeout(5000)
-    await this.page.locator(this.genaratereport_colored).click({waitForTimeout:3000})
+    await this.genaratereport_colored.click()
+    await this.page.waitForTimeout(5000)
 }
 
 async combinechats_(){
     await this.page.locator(this.combineChats).click()
 }
 async selectChats_(count){
-    for(let i=0;i<count;++i){
+    console.log("count",count)
+    for(let i=0;i<count;i++){
         await this.page.locator(this.resultCheckbox).nth(i).click({waitForTimeout:1000})
     }
 }

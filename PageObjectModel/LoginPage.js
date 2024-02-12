@@ -10,7 +10,7 @@ constructor(page)
     this.errorMsg="//p[.='Invalid credentials']"
 }
 async goto(){
-    await this.page.goto('http://localhost:5174/login')
+    await this.page.goto('http://localhost:5178/login')
 }
 async passwordTextField(password){
     await this.page.getByLabel(this.password).fill(password);
