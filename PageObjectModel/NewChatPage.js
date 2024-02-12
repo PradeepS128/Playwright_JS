@@ -3,6 +3,8 @@ exports.NewChatPage=class NewChatPage
 constructor(page){
 this.page=page
 this.htmlDoc="div #htmlResource"
+this.pdfDoc="//canvas"
+this.slideDoc="//canvas"
 this.popupClose="div #closeBtn"
 this.ratings='#ratingIcon'
 this.commentBoxIcon="#commentsIcon"
@@ -13,11 +15,23 @@ async htmlDocFiles(){
     await this.page.locator(this.htmlDoc).nth(0).click()
     await this.page.waitForTimeout(3000)
 }
+async pdfDocFiles(){
+    await this.page.locator(this.pdfDoc).nth(0).click()
+    await this.page.waitForTimeout(3000)
+}
+async slideDocFiles(){
+    await this.page.locator(this.slideDoc).nth(0).click()
+    await this.page.waitForTimeout(3000)
+}
 async popupCloseWindow(){
     await this.page.locator(this.popupClose).click()
 }
 async htmlDocScrol(){
     const elementHandle=await this.page.locator(this.htmlDoc).last()
+    await elementHandle.scrollIntoViewIfNeeded()
+}
+async pdfDocScrol(){
+    const elementHandle=await this.page.locator(this.pdfDoc).last()
     await elementHandle.scrollIntoViewIfNeeded()
 }
 async userRatings(){
