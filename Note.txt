@@ -1,0 +1,23 @@
+Execution commands:
+
+
+Regression: (Runs on 3 browsers)
+pnpm exec playwright test
+
+Regression: : (Runs on chrome browser)
+pnpm exec playwright test  --project="chromium"
+
+Regression: : (Runs on firefox browser)
+pnpm exec playwright test  --project="firefox"
+
+Regression: : (Runs on safari browser)
+pnpm exec playwright test  --project="webkit"
+
+To run a specific application (Ex: E2E_Functional)
+pnpm exec playwright test  E2E_HTML.spec.js  --project="chromium"
+
+To run a specific application (Ex: E2E_Functional) on 3 browsers
+pnpm exec playwright test  E2E_HTML.spec.js 
+
+To run scripts in headless mode, please navigate to the `playwright.config.js` file. 
+Under the `projects` array, look for a keyword named `headless` and change it to either `true` or `false`.
