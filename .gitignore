@@ -6,12 +6,4 @@ node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
-<<<<<<< HEAD
 /playwright/.cache/
-<<<<<<< HEAD
-=======
- 
->>>>>>> b655367 (Added locators)
-=======
-/playwright/.cache/
->>>>>>> 11624ec (added test cases for history page)

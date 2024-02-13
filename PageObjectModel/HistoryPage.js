@@ -20,14 +20,7 @@ constructor(page)
     this.Resources="//p[.='Resources']"
 }
 async contentButton(){
-    await this.page.locator(this.Content).click() }
-
-async  closeButtonGenerateReport(){
-    await this.page.locator(this.closeGenerateReport).click() }
-
-async  closeButtonCombineChats(){
-    await this.page.locator(this.closeCombineChats).click() }
-    
+    await this.page.locator(this.Content).click() } 
 
 async resourcesButton(){
     await this.page.locator(this.Resources).click() }
@@ -35,10 +28,6 @@ async resourcesButton(){
 
 async genaratereport_3VerticalDot_(){
     await this.page.locator(this.genaratereport_3VerticalDot).click()
-}
-
-async history_3VerticalDot_(){
-    await this.page.locator(this.historyVerticalDot).nth(0).click()
 }
 
 async genaratereport_colored_(){
@@ -50,8 +39,7 @@ async combinechats_(){
     await this.page.locator(this.combineChats).click()
 }
 async selectChats_(count){
-    console.log("count",count)
-    for(let i=0;i<count;i++){
+    for(let i=0;i<count;++i){
         await this.page.locator(this.resultCheckbox).nth(i).click({waitForTimeout:1000})
     }
 }
