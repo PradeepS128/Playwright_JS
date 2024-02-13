@@ -41,6 +41,11 @@ exports.HomePage = class HomePage {
     //close button
     this.closeButton =
       "//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]";
+    //validation
+    this.welcomeMessageTitle = '#welcomeMessage';
+    this.helloUserNameTitle = '#userName';
+    //validation-Nikhila
+    this.selectRegionText = "//label[text()='Select Region']";
   }
 
   async newChatHovering() {
@@ -57,7 +62,7 @@ exports.HomePage = class HomePage {
     const input = await this.page.locator(this.searchButton);
     await input.waitFor();
     await input.click();
-    await this.page.waitForTimeout(20000);
+    await this.page.waitForTimeout(40000);
   }
   async three_vertical_dot_() {
     await this.page
@@ -132,21 +137,23 @@ exports.HomePage = class HomePage {
     await this.page.locator(this.logout).click({ waitForTimeout: 2000 });
   }
 
-  async regionButton_(){
+  async clickRegionButton_() {
     await this.page.locator(this.region).click()
-    await this.page.locator(this.center).click()
+  }
+  async closeRegion_() {
     await this.page.locator(this.closeRegion).click()
   }
 
-  async regionButton_(){
-    await this.page.locator(this.region).click()
+  async multiSelectState_(){
     await this.page.locator(this.state).nth(0).click()
     await this.page.locator(this.state).nth(15).click()
     await this.page.locator(this.state).nth(3).click()
     await this.page.locator(this.state).nth(24).click()
     await this.page.locator(this.center).click()
-    await this.page.locator(this.clearAll).click()
-    await this.page.locator(this.closeRegion).click()
+  }
+
+  async clearAllRegionSelection_(){
+    await this.page.locator(this.clearAll).click() 
   }
 
   async editChatTitle(title){

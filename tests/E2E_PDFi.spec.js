@@ -3,7 +3,8 @@ const {LoginPage}=require('../PageObjectModel/LoginPage') //imported from pom
 const {HomePage}=require('../PageObjectModel/HomePage')
 const {HistoryPage}=require('../PageObjectModel/HistoryPage')
 const {ReportPage}=require('../PageObjectModel/ReportPage');
-const { log } = require('console');
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
 const { NewChatPage } = require('../PageObjectModel/NewChatPage');
 
 test.beforeEach("verify the functionality of user login",async({page})=>{
@@ -15,12 +16,12 @@ test.afterEach("close the browser",async({page})=>{
     await page.waitForTimeout(2000)
     await page.close()
 })
-const setup=(page)=>{                      // reusuable code
+const setup=(page)=>{  // reusuable code
     return {
-    username:'nikhila.vijayakarnan@fibonalabs.com',
-    password:'nikhila@123',    
+    username: username,
+    password: password,    
     input:'How are these trends influencing global energy policies?',
-    input_2:'What are the investment opportunities in these emerging trends?',
+    input_2:'Identify the most significant technological advancements in the automotive industry.',
     title:'Global energy policies?',
     ratingsCount:3,
     checkboxCount:2,
@@ -209,16 +210,19 @@ test.skip("@smoke _Verify the functionality of user login and user can enter mul
 test.skip("TC-22_Verify User Login Functionality, validate Region button in Three Vertical Dots, perform center selection and sequential query entry",async({page})=>{
     const {homepage, input}=setup(page)    
     await homepage.three_vertical_dot_()
-    await homepage.regionButton_()
+    await homepage.clickRegionButton_()
+    await homepage.selectRegion_()
     await homepage.searchTextField_(input)
     await homepage.searchResults()
 })
 
-test.skip("TC-23_Verify User Login Functionality, validate Region button in Three Vertical Dots, perform multiple state selection",async({page})=>{
+test.skip("TC-23_Verify User Login Functionality, validate Region button in Three Vertical Dots, perform multiple state selection and clear all selection",async({page})=>{
     const {homepage}=setup(page)    
     await homepage.three_vertical_dot_()
-    await homepage.regionButton_()
-    await homepage.closeButton_()
+    await homepage.clickRegionButton_()
+    await homepage.multiSelectState_()
+    await homepage.clearAllRegionSelection_()
+    await homepage.closeRegion_()
 })
 
 test.skip("TC-24_Verify User Login Functionality, perform multiple query entry",async({page})=>{
@@ -229,11 +233,20 @@ test.skip("TC-24_Verify User Login Functionality, perform multiple query entry",
     await homepage.searchResults() 
 })
 
-test("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
+test.skip("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
     const {homepage, input, title}=setup(page)
     await homepage.searchTextField_(input)
     await homepage.searchResults()
     await homepage.editChatTitle(title)
     expect.soft(await page.locator("#reportTitle")).toHaveText(title)
+})
+
+test("TC-26_Verify User Login Functionality, enter a query from chat history",async({page})=>{
+    const {homepage, historyPage, input_2}=setup(page)
+    await homepage.three_vertical_dot_()
+    await homepage.historyPage_()
+    await historyPage.select_first_chat_history()
+    await homepage.searchTextField_(input_2)
+    await homepage.searchResults()
 })
 
