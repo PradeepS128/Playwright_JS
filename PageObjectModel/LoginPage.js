@@ -1,4 +1,7 @@
-exports.LoginPage=class LoginPage 
+require('dotenv').config();
+const pdfi_app_url = process.env.PDFI_APP_URL;
+const generation_app_url = process.env.GENERATION_APP_URL;
+export class LoginPage 
 {
 constructor(page)
 {
@@ -8,9 +11,13 @@ constructor(page)
     this.checkbox='//input[@type="checkbox"]';
     this.login='button',{'name':'Login'};
     this.errorMsg="//p[.='Invalid credentials']"
+
+    //validation
+    this.userIDText = "//label[.='User ID']";
+    this.passwordText = "//label[.='Password']";
 }
 async goto(){
-    await this.page.goto('http://localhost:5174/login')
+    await this.page.goto(pdfi_app_url)
 }
 async passwordTextField(password){
     await this.page.getByLabel(this.password).fill(password);
@@ -39,7 +46,5 @@ async validLogin(username,password)
     await this.page.getByRole(this.login).click()
     await this.page.waitForTimeout(2000)
 }
-
-
 
 }

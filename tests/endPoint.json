@@ -1,0 +1,25 @@
+[
+    {
+      "pdf": [
+        {
+          "name": "Thermodynamics",
+          "base": "/v3/search",
+          "prefix": "preprocess/gammadoc_v0/pdf"
+        },
+        {
+          "name": "India Policy",
+          "base": "/v8/search",
+          "prefix": "preprocess/indiagovt_v1/pdf"
+        }
+      ]
+    },
+    {
+      "html": [
+        {
+          "name": "Finance",
+          "base": "/v5/search",
+          "prefix": "preprocess/finguru_v3/render_html"
+        }
+      ]
+    }
+  ]
