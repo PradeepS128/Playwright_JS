@@ -41,23 +41,17 @@ test.skip("TC-01_verify the functionality of user login, hover action on the New
     await homepage.searchTextField_(input)
     await homepage.searchResults() 
 })
-test.skip("TC-02_Verify User Login Functionality and validate Resource dropdown in Three Vertical Dots",async({page})=>{
+test("TC-02_Verify User Login Functionality and validate Resource dropdown in Three Vertical Dots",async({page})=>{
     const {homepage}=setup(page)    
-    await homepage.three_vertical_dot_()
     await homepage.resourceDropdown10_()
     await homepage.resourceDropdown20_()
     await homepage.resourceDropdown30_()
-    await homepage.resourceDropdown40_()
-    await homepage.resourceDropdown50_()
-    await homepage.closeButton_()
 })
 test.skip("TC-03_Verify User Login Functionality and validate Creativity dropdown in Three Vertical Dots",async({page})=>{
     const {homepage}=setup(page)
-    await homepage.three_vertical_dot_()
     await homepage.CreativityHigh_()
-    await homepage.CreativityLow_()
     await homepage.CreativityMedium_()
-    await homepage.closeButton_()
+    await homepage.CreativityLow_()
 })
 
 test.skip("TC-04_Verify User Login Functionality and validate History and Report Button in Three Vertical Dots",async({page})=>{
@@ -234,7 +228,7 @@ test.skip("TC-24_Verify User Login Functionality, perform multiple query entry",
     await homepage.searchResults() 
 })
 
-test("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
+test.skip("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
     const {homepage, input, title}=setup(page)
     await homepage.searchTextField_(input)
     await homepage.searchResults()

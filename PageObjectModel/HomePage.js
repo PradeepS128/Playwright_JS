@@ -10,24 +10,7 @@ exports.HomePage = class HomePage {
     this.updateTitle = "#chat-title";
     //three vertical dot
     this.three_vertical_dot = "#chatMenu";
-    this.resourceDropdown10 = "//button[.='Resources: 10']";
-    this.resourceDropdown20 = "//button[.='Resources: 20']";
-    this.resourceDropdown30 = "//button[.='Resources: 30']";
-    this.resourceDropdown40 = "//button[.='Resources: 40']";
-    this.resourceDropdown50 = "//button[.='Resources: 50']";
-    // selected resource button
-    this.selectedDropdown10 = "//button[.=10]";
-    this.selectedDropdown20 = "//button[.=20]";
-    this.selectedDropdown30 = "//button[.=30]";
-    this.selectedDropdown40 = "//button[.=40]";
-    this.selectedDropdown50 = "//button[.=50]";
-    // creativity
-    this.High = "#High";
-    this.low = "#Low";
-    this.Medium = "#Medium";
-    this.CreativityMedium = "//button[.='Creativity: medium']";
-    this.CreativityHigh = "//button[.='Creativity: high']";
-    this.CreativityLow = "//button[.='Creativity: low']";
+
     //region
     this.region = "//button[.='Region']";
     this.center = "#centerName";
@@ -54,6 +37,19 @@ exports.HomePage = class HomePage {
     this.systemHeading = '#systemHeading'
     this.doSampleTrue = '#doSampleTrue'
     this.doSampleFalse = '#doSampleFalse'
+    this.sidePanel = '#toggleSidePanel'
+    this.resourceTitle = "//span[.='Resource Limit']";
+    this.creativityTitle = "//span[.='Creativity']";
+
+    //creativity-Nikhila
+    this.CreativityLow = '#creativity1'
+    this.CreativityMedium = '#creativity2'
+    this.CreativityHigh = '#creativity3'
+
+    //resource-Nikhila
+    this.resourceDropdown10 = "#resourceLimit1";
+    this.resourceDropdown20 = "#resourceLimit2";
+    this.resourceDropdown30 = "#resourceLimit3";
 
     //sidebar-generation
     this.leftSideBarButton = "#leftArrow";
@@ -86,57 +82,26 @@ exports.HomePage = class HomePage {
   }
 
   async resourceDropdown10_() {
-    await this.page
-      .locator(this.resourceDropdown10)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.selectedDropdown10).click();
+    await this.page.locator(this.resourceDropdown10).click({ waitForTimeout: 2000 });
   }
-
   async resourceDropdown20_() {
-    await this.page
-      .locator(this.resourceDropdown10)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.selectedDropdown20).click();
+    await this.page.locator(this.resourceDropdown20).click({ waitForTimeout: 2000 });
   }
-
   async resourceDropdown30_() {
-    await this.page
-      .locator(this.resourceDropdown20)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.selectedDropdown30).click();
-  }
-
-  async resourceDropdown40_() {
-    await this.page
-      .locator(this.resourceDropdown30)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.selectedDropdown40).click();
-  }
-
-  async resourceDropdown50_() {
-    await this.page
-      .locator(this.resourceDropdown40)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.selectedDropdown50).click();
+    await this.page.locator(this.resourceDropdown30).click({ waitForTimeout: 2000 });
   }
   async closeButton_() {
     await this.page.locator(this.closeButton).click();
   }
-  async CreativityHigh_() {
-    await this.page
-      .locator(this.CreativityMedium)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.High).click();
-  }
+
   async CreativityLow_() {
-    await this.page
-      .locator(this.CreativityHigh)
-      .hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.low).click();
+    await this.page.locator(this.CreativityLow).click({ waitForTimeout: 2000 })
   }
   async CreativityMedium_() {
-    await this.page.locator(this.CreativityLow).hover({ waitForTimeout: 2000 });
-    await this.page.locator(this.Medium).click();
+    await this.page.locator(this.CreativityMedium).click({ waitForTimeout: 2000 })
+  }
+  async CreativityHigh_() {
+    await this.page.locator(this.CreativityHigh).click({ waitForTimeout: 2000 })
   }
   async historyPage_() {
     const input = await this.history;

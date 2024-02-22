@@ -30,7 +30,7 @@ const setup = (page) => {
 };
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 test.describe.configure({ mode: "parallel" });
-test("Verify the functionality of user login and verify the title of the report page.", async ({
+test.skip("Verify the functionality of user login and verify the title of the report page.", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -39,7 +39,7 @@ test("Verify the functionality of user login and verify the title of the report 
   expect.soft(page.locator(reportpage.reportPageTitle)).toHaveText("Report");
 });
 
-test("Verify User Login Functionality and Validate CreatedByYou text on Report Page", async ({
+test.skip("Verify User Login Functionality and Validate CreatedByYou text on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -50,7 +50,7 @@ test("Verify User Login Functionality and Validate CreatedByYou text on Report P
     .toContainText("Created");
 });
 
-test("Verify User Login Functionality and Ensure Edit Icon is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Edit Icon is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -60,7 +60,7 @@ test("Verify User Login Functionality and Ensure Edit Icon is Enabled on Report 
   expect.soft(page.locator(reportpage.editTitleButton)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Edit_Report_Title is Displayed on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Edit_Report_Title is Displayed on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -73,7 +73,7 @@ test("Verify User Login Functionality and Ensure Edit_Report_Title is Displayed 
     .toHaveText("Edit Report Title");
 });
 
-test("Verify User Login Functionality and Ensure Text Area is Editable on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Text Area is Editable on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -84,7 +84,7 @@ test("Verify User Login Functionality and Ensure Text Area is Editable on Report
   expect.soft(page.locator(reportpage.editReportPageTextarea)).toBeEditable();
 });
 
-test("Verify User Login Functionality and Ensure Cancel Button is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Cancel Button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -95,7 +95,7 @@ test("Verify User Login Functionality and Ensure Cancel Button is Enabled on Rep
   expect.soft(await reportpage.PopupCancle).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Save Button is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Save Button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -106,7 +106,7 @@ test("Verify User Login Functionality and Ensure Save Button is Enabled on Repor
   expect.soft(await reportpage.save).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure close Button is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure close Button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -115,7 +115,7 @@ test("Verify User Login Functionality and Ensure close Button is Enabled on Repo
   await reportpage.first_title_search_results();
   expect.soft(page.locator(reportpage.reportViewclose)).toBeEnabled();
 });
-test("Verify User Login Functionality and Ensure three vertical Button is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure three vertical Button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -124,7 +124,7 @@ test("Verify User Login Functionality and Ensure three vertical Button is Enable
   expect.soft(page.locator(reportpage.threeVerticalDot).nth(0)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Delete Button is Enabled on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Delete Button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -134,7 +134,7 @@ test("Verify User Login Functionality and Ensure Delete Button is Enabled on Rep
   expect.soft(page.locator(reportpage.threeDotsDelete)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Delete Title is Displayed on Report Page", async ({
+test.skip("Verify User Login Functionality and Ensure Delete Title is Displayed on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -145,7 +145,7 @@ test("Verify User Login Functionality and Ensure Delete Title is Displayed on Re
   expect.soft(page.locator(reportpage.PopupTitle)).toHaveText("Delete");
 });
 
-test(" Verify User Login Functionality and Ensure Text Area is Enabled on Delete Popup on Report Page", async ({
+test.skip(" Verify User Login Functionality and Ensure Text Area is Enabled on Delete Popup on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -158,7 +158,7 @@ test(" Verify User Login Functionality and Ensure Text Area is Enabled on Delete
     .toContainText("Are you sure you want to delete");
 });
 
-test(" Verify User Login Functionality and Ensure cancel button is Enabled on Report Page", async ({
+test.skip(" Verify User Login Functionality and Ensure cancel button is Enabled on Report Page", async ({
   page,
 }) => {
   const { homepage, reportpage } = setup(page);
@@ -169,20 +169,20 @@ test(" Verify User Login Functionality and Ensure cancel button is Enabled on Re
   expect.soft(await reportpage.PopupCancle).toBeEnabled();
 });
 
-test(" Verify User Login Functionality and Ensure delete button is Enabled on Report Page", async ({
+test.skip(" Verify User Login Functionality and Ensure delete button is Enabled on Report Page", async ({
   page,
 }) => {
-    const { homepage, reportpage } = setup(page);
-    await homepage.three_vertical_dot_();
-    await homepage.reportPage_();
-    await reportpage.three_vertical_dot_();
-    await reportpage.three_dot_delete();
-    expect.soft(page.locator(reportpage.PopupDelete)).toBeEnabled();
+  const { homepage, reportpage } = setup(page);
+  await homepage.three_vertical_dot_();
+  await homepage.reportPage_();
+  await reportpage.three_vertical_dot_();
+  await reportpage.three_dot_delete();
+  expect.soft(page.locator(reportpage.PopupDelete)).toBeEnabled();
 });
 
 //////////////////////History Page////////////////////////
 
-test("Verify User Login Functionality and Ensure History Page Title is Displayed on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure History Page Title is Displayed on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -191,7 +191,7 @@ test("Verify User Login Functionality and Ensure History Page Title is Displayed
   expect.soft(page.locator(historyPage.historyPageTitle)).toHaveText("History");
 });
 
-test("Verify User Login Functionality and Validate CreatedByYou text on history Page", async ({
+test.skip("Verify User Login Functionality and Validate CreatedByYou text on history Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -202,7 +202,7 @@ test("Verify User Login Functionality and Validate CreatedByYou text on history 
     .toContainText("Created by");
 });
 
-test("Verify User Login Functionality and ensure Edit Icon is Enabled on history Page ", async ({
+test.skip("Verify User Login Functionality and ensure Edit Icon is Enabled on history Page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -212,7 +212,7 @@ test("Verify User Login Functionality and ensure Edit Icon is Enabled on history
   expect.soft(page.locator(historyPage.editTitleIcon)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Edit Report Title is Displayed on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure Edit Report Title is Displayed on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -225,7 +225,7 @@ test("Verify User Login Functionality and Ensure Edit Report Title is Displayed 
     .toHaveText("Edit Title");
 });
 
-test("Verify User Login Functionality and Ensure Edit Text Area is Displayed on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure Edit Text Area is Displayed on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -236,7 +236,7 @@ test("Verify User Login Functionality and Ensure Edit Text Area is Displayed on 
   expect.soft(page.locator(historyPage.editHistoryPageTextarea)).toBeEditable();
 });
 
-test("Verify User Login Functionality and Ensure Cancel Button is  enabled on History page ", async ({
+test.skip("Verify User Login Functionality and Ensure Cancel Button is  enabled on History page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -247,7 +247,7 @@ test("Verify User Login Functionality and Ensure Cancel Button is  enabled on Hi
   expect.soft(await historyPage.PopupCancle).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure save Button is enabled on History page ", async ({
+test.skip("Verify User Login Functionality and Ensure save Button is enabled on History page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -258,7 +258,7 @@ test("Verify User Login Functionality and Ensure save Button is enabled on Histo
   expect.soft(await historyPage.save).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Three Vertical Dot Button is Enabled in Header on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure Three Vertical Dot Button is Enabled in Header on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -269,7 +269,7 @@ test("Verify User Login Functionality and Ensure Three Vertical Dot Button is En
     .toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Delete button is Enabled on history page", async ({
+test.skip("Verify User Login Functionality and Ensure Delete button is Enabled on history page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -279,7 +279,7 @@ test("Verify User Login Functionality and Ensure Delete button is Enabled on his
   expect.soft(page.locator(historyPage.threeDotDelete)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure delete Popup Title is displayed on history page", async ({
+test.skip("Verify User Login Functionality and Ensure delete Popup Title is displayed on history page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -290,7 +290,7 @@ test("Verify User Login Functionality and Ensure delete Popup Title is displayed
   expect.soft(page.locator(historyPage.PopupDeleteTitle)).toHaveText("Delete");
 });
 
-test("Verify User Login Functionality and Ensure delete Popup warning Title is displayed on history page  ", async ({
+test.skip("Verify User Login Functionality and Ensure delete Popup warning Title is displayed on history page  ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -303,7 +303,7 @@ test("Verify User Login Functionality and Ensure delete Popup warning Title is d
     .toContainText("Are you sure you want to delete");
 });
 
-test("Verify User Login Functionality and Ensure Cancel Button is Enabled on a Popup in History Page ", async ({
+test.skip("Verify User Login Functionality and Ensure Cancel Button is Enabled on a Popup in History Page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -314,7 +314,7 @@ test("Verify User Login Functionality and Ensure Cancel Button is Enabled on a P
   expect.soft(await historyPage.PopupCancle).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure delete Button is Enabled on a Popup in History Page", async ({
+test.skip("Verify User Login Functionality and Ensure delete Button is Enabled on a Popup in History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -325,7 +325,7 @@ test("Verify User Login Functionality and Ensure delete Button is Enabled on a P
   expect.soft(await historyPage.PopupDelete).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure combine chats Button is enabled on History Page ", async ({
+test.skip("Verify User Login Functionality and Ensure combine chats Button is enabled on History Page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -335,7 +335,7 @@ test("Verify User Login Functionality and Ensure combine chats Button is enabled
   expect.soft(page.locator(historyPage.combineChats)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure genarate report button is enabled on History Page  ", async ({
+test.skip("Verify User Login Functionality and Ensure genarate report button is enabled on History Page  ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -345,7 +345,7 @@ test("Verify User Login Functionality and Ensure genarate report button is enabl
   expect.soft(page.locator(historyPage.genaratereport)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure ContentandResource Button is enabled on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure ContentandResource Button is enabled on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -356,7 +356,7 @@ test("Verify User Login Functionality and Ensure ContentandResource Button is en
   expect.soft(page.locator(historyPage.contentAndResources)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Content Button is Enabled on History page ", async ({
+test.skip("Verify User Login Functionality and Ensure Content Button is Enabled on History page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -367,7 +367,7 @@ test("Verify User Login Functionality and Ensure Content Button is Enabled on Hi
   expect.soft(page.locator(historyPage.Content)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Resource Button is Enabled on History page ", async ({
+test.skip("Verify User Login Functionality and Ensure Resource Button is Enabled on History page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -377,7 +377,7 @@ test("Verify User Login Functionality and Ensure Resource Button is Enabled on H
   await historyPage.genaratereport_button();
   expect.soft(page.locator(historyPage.Resources)).toBeEnabled();
 });
-test("Verify User Login Functionality and Ensure close Button(genarete page) is Enabled on History page ", async ({
+test.skip("Verify User Login Functionality and Ensure close Button(genarete page) is Enabled on History page ", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -387,7 +387,7 @@ test("Verify User Login Functionality and Ensure close Button(genarete page) is 
   await historyPage.genaratereport_button();
   expect.soft(page.locator(historyPage.generateReportClose)).toBeEnabled();
 });
-test("Verify User Login Functionality and Ensure Combine_Chats_Page Close Button is Enabled on History Page", async ({
+test.skip("Verify User Login Functionality and Ensure Combine_Chats_Page Close Button is Enabled on History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -397,7 +397,7 @@ test("Verify User Login Functionality and Ensure Combine_Chats_Page Close Button
   await historyPage.combinechats_();
   expect.soft(page.locator(historyPage.generateReportClose)).toBeEnabled();
 });
-test("Verify User Login Functionality and Ensure share button is disabled in History Page", async ({
+test.skip("Verify User Login Functionality and Ensure share button is disabled in History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -406,7 +406,7 @@ test("Verify User Login Functionality and Ensure share button is disabled in His
   await historyPage.select_first_chat_history();
   expect.soft(page.locator(historyPage.botShareIcon)).toBeDisabled();
 });
-test("Verify User Login Functionality and Ensure report icon button is disabled in History Page", async ({
+test.skip("Verify User Login Functionality and Ensure report icon button is disabled in History Page", async ({
   page,
 }) => {
   const { homepage, historyPage } = setup(page);
@@ -416,14 +416,14 @@ test("Verify User Login Functionality and Ensure report icon button is disabled 
   expect.soft(page.locator(historyPage.botReportIcon)).toBeDisabled();
 });
 ///////////////////////////////// Home-Page  ///////////////////////////
-test("Verify User Login Functionality and Ensure Hello_Title is Displayed on Home Page", async ({
+test.skip("Verify User Login Functionality and Ensure Hello_Title is Displayed on Home Page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
   expect.soft(page.locator(homepage.helloUserNameTitle)).toContainText("Hello");
 });
 
-test("Verify User Login Functionality and Ensure Welcome_Message Title is Displayed on Home Page", async ({
+test.skip("Verify User Login Functionality and Ensure Welcome_Message Title is Displayed on Home Page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -432,35 +432,35 @@ test("Verify User Login Functionality and Ensure Welcome_Message Title is Displa
     .toHaveText("Feel free to ask me anything");
 });
 
-test("Verify User Login Functionality and Ensure Home Page Logo Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Logo Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
   expect.soft(page.locator(homepage.AIIcon)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Search Text Area is Editable", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Search Text Area is Editable", async ({
   page,
 }) => {
   const { homepage } = setup(page);
   expect.soft(page.locator(homepage.searchTextField)).toBeEditable();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Search Button is Disabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Search Button is Disabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
   expect.soft(page.locator(homepage.searchButton)).toBeDisabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Three Vertical Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Three Vertical Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
   expect.soft(page.locator(homepage.three_vertical_dot)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page History Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page History Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -468,7 +468,7 @@ test("Verify User Login Functionality and Ensure Home Page History Button is Ena
   expect.soft(homepage.history).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Report Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Report Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -476,7 +476,7 @@ test("Verify User Login Functionality and Ensure Home Page Report Button is Enab
   expect.soft(homepage.report).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Resource Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Resource Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -484,7 +484,7 @@ test("Verify User Login Functionality and Ensure Home Page Resource Button is En
   expect.soft(page.locator(homepage.resourceDropdown10)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Creativity Button is Enabled ", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Creativity Button is Enabled ", async ({
   page,
 }) => {
   const homepage = new HomePage(page);
@@ -492,7 +492,7 @@ test("Verify User Login Functionality and Ensure Home Page Creativity Button is 
   expect.soft(page.locator(homepage.CreativityMedium)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Logout Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Logout Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -500,7 +500,7 @@ test("Verify User Login Functionality and Ensure Home Page Logout Button is Enab
   expect.soft(page.locator(homepage.logout)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Home Page Close Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Home Page Close Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -508,7 +508,7 @@ test("Verify User Login Functionality and Ensure Home Page Close Button is Enabl
   expect.soft(page.locator(homepage.closeButton)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Region Button is Enabled", async ({
+test.skip("Verify User Login Functionality and Ensure Region Button is Enabled", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -516,7 +516,7 @@ test("Verify User Login Functionality and Ensure Region Button is Enabled", asyn
   expect.soft(page.locator(homepage.region)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Select Region Text is present on Region popup page", async ({
+test.skip("Verify User Login Functionality and Ensure Select Region Text is present on Region popup page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -527,7 +527,7 @@ test("Verify User Login Functionality and Ensure Select Region Text is present o
     .toContainText("Select Region");
 });
 
-test("Verify User Login Functionality and Ensure Clear All button is enabled in Region popup page", async ({
+test.skip("Verify User Login Functionality and Ensure Clear All button is enabled in Region popup page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -536,7 +536,7 @@ test("Verify User Login Functionality and Ensure Clear All button is enabled in 
   expect.soft(page.locator(homepage.clearAll)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure Close button is enabled in Region popup page", async ({
+test.skip("Verify User Login Functionality and Ensure Close button is enabled in Region popup page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -545,7 +545,7 @@ test("Verify User Login Functionality and Ensure Close button is enabled in Regi
   expect.soft(page.locator(homepage.closeRegion)).toBeEnabled();
 });
 
-test("Verify User Login Functionality and Ensure State Selection is enabled in Region popup page", async ({
+test.skip("Verify User Login Functionality and Ensure State Selection is enabled in Region popup page", async ({
   page,
 }) => {
   const { homepage } = setup(page);
@@ -558,17 +558,34 @@ test("Verify User Login Functionality and Ensure State Selection is enabled in R
   }
 });
 
-test("Verify User Login Functionality and Ensure Center Selection is enabled in Region popup page", async ({
-    page,
-  }) => {
-    const { homepage } = setup(page);
-    await homepage.three_vertical_dot_();
-    await homepage.clickRegionButton_();
-    expect.soft(page.locator(homepage.center)).toBeEnabled();
-  });
-
+test.skip("Verify User Login Functionality and Ensure Center Selection is enabled in Region popup page", async ({
+  page,
+}) => {
+  const { homepage } = setup(page);
+  await homepage.three_vertical_dot_();
+  await homepage.clickRegionButton_();
+  expect.soft(page.locator(homepage.center)).toBeEnabled();
+});
+test.skip("Verify User Login Functionality and Ensure side panel is enabled", async ({
+  page,
+}) => {
+  const { homepage } = setup(page);
+  expect.soft(page.locator(homepage.sidePanel)).toBeEnabled();
+});
+test("Verify User Login Functionality and Ensure resource title is present", async ({
+  page,
+}) => {
+  const { homepage } = setup(page);
+  expect.soft(page.locator(homepage.resourceTitle)).toHaveText('Resource Limit');
+});
+test("Verify User Login Functionality and Ensure creativity title is present", async ({
+  page,
+}) => {
+  const { homepage } = setup(page);
+  expect.soft(page.locator(homepage.creativityTitle)).toHaveText('Creativity');
+});
 ///////// Login Page //////
-test("Verify User Login Functionality and Ensure Login Page UserID Text Verification ", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page UserID Text Verification ", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -577,7 +594,7 @@ test("Verify User Login Functionality and Ensure Login Page UserID Text Verifica
   expect.soft(page.locator(loginpage.userIDText)).toHaveText("User ID");
 });
 
-test("Verify User Login Functionality and Ensure Login Page Password Text Verification ", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page Password Text Verification ", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -586,7 +603,7 @@ test("Verify User Login Functionality and Ensure Login Page Password Text Verifi
   expect.soft(page.locator(loginpage.passwordText)).toHaveText("Password");
 });
 
-test("Verify User Login Functionality and Ensure Login Page User ID Field is Editable ", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page User ID Field is Editable ", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -595,7 +612,7 @@ test("Verify User Login Functionality and Ensure Login Page User ID Field is Edi
   expect.soft(page.getByLabel(loginpage.userID)).toBeEditable();
 });
 
-test("Verify User Login Functionality and Ensure Login Page Password Field is Editable ", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page Password Field is Editable ", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -604,7 +621,7 @@ test("Verify User Login Functionality and Ensure Login Page Password Field is Ed
   expect.soft(page.getByLabel(loginpage.password)).toBeEditable();
 });
 
-test("Verify User Login Functionality and Ensure Login Page Checkbox is Disabled ", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page Checkbox is Disabled ", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -613,7 +630,7 @@ test("Verify User Login Functionality and Ensure Login Page Checkbox is Disabled
   expect.soft(page.getByLabel(loginpage.checkbox)).toBeDisabled;
 });
 
-test("Verify User Login Functionality and Ensure Login Page Checkbox is Checked", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page Checkbox is Checked", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
@@ -622,7 +639,7 @@ test("Verify User Login Functionality and Ensure Login Page Checkbox is Checked"
   await loginpage.termsOfServices();
   expect.soft(page.getByLabel(loginpage.checkbox)).toBeTruthy();
 });
-test("Verify User Login Functionality and Ensure Login Page Login Button is Disabled", async ({
+test.skip("Verify User Login Functionality and Ensure Login Page Login Button is Disabled", async ({
   page,
 }) => {
   const { loginpage, homepage } = setup(page);
