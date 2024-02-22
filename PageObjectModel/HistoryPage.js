@@ -22,6 +22,7 @@ exports.HistoryPage = class HistoryPage {
     this.editTitleIcon = '#editIcon';
     this.editHistoryTitle = "//label[.='Edit Title']";
     this.editHistoryPageTextarea = "//textarea[@id='chat-title']";
+    this.saveChatHistoryTitleButton = page.getByText('Save');
     this.PopupCancle = page.getByRole('button', { name: 'Cancel' });
     this.save = page.getByRole('button', { name: 'Save' });
     this.botShareIcon = '#shareIcon';
@@ -47,6 +48,8 @@ exports.HistoryPage = class HistoryPage {
     this.closeComments = '#closeIconBtn';
     this.noMoreRecords = '#noData';
     this.generateReportClose = '#closeBtn';
+    this.systemSettingsIcon = '#settingsIcon';
+    this.leftSideBarButton = "#leftArrow";
   }
   async contentButton() {
     await this.page.locator(this.Content).click();
@@ -128,11 +131,16 @@ exports.HistoryPage = class HistoryPage {
 
   async threedot_delete_button() {
     await this.page.locator(this.threeDotDelete).click();
+    await this.page.locator(this.popupDelete).click({ delay: 3000 });
   }
 
   async editTitle() {
     await this.page.locator(this.editTitleIcon).click();
   }
-
-
+   async editChatHistoryTitle(input) {
+    await this.page.locator(this.editTitleIcon).click();
+    await this.page.locator(this.editHistoryPageTextarea).click();
+    await this.page.locator(this.editHistoryPageTextarea).fill(input, { waitForTimeout: 3000 });
+    await this.page.locator('button:has-text("Save")').click({ delay: 3000 });
+   }
 };

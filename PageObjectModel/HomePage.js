@@ -5,9 +5,9 @@ exports.HomePage = class HomePage {
     this.newChat = "//span[.='New Chat']";
     this.searchTextField = '//textarea[@placeholder="Search..."]';
     this.searchButton = "#sendMessage";
-    this.title = "#editIcon"
-    this.save = "//button[.='Save']"
-    this.updateTitle = "#chat-title"
+    this.title = "#editIcon";
+    this.save = "//button[.='Save']";
+    this.updateTitle = "#chat-title";
     //three vertical dot
     this.three_vertical_dot = "#chatMenu";
     this.resourceDropdown10 = "//button[.='Resources: 10']";
@@ -29,11 +29,11 @@ exports.HomePage = class HomePage {
     this.CreativityHigh = "//button[.='Creativity: high']";
     this.CreativityLow = "//button[.='Creativity: low']";
     //region
-    this.region="//button[.='Region']" 
-    this.center = "#centerName"
-    this.closeRegion = "#close"
-    this.clearAll = "#clearAll"
-    this.state = "#stateName"
+    this.region = "//button[.='Region']";
+    this.center = "#centerName";
+    this.closeRegion = "#close";
+    this.clearAll = "#clearAll";
+    this.state = "#stateName";
     // history, report, logout
     this.history = page.getByRole("button", { name: "History" });
     this.report = page.getByRole("button", { name: "Reports" });
@@ -42,10 +42,25 @@ exports.HomePage = class HomePage {
     this.closeButton =
       "//button[contains(@class,'bg-option-btn') and contains(@class,'flex')]";
     //validation
-    this.welcomeMessageTitle = '#welcomeMessage';
-    this.helloUserNameTitle = '#userName';
+    this.welcomeMessageTitle = "#welcomeMessage";
+    this.helloUserNameTitle = "#userName";
     //validation-Nikhila
     this.selectRegionText = "//label[text()='Select Region']";
+    this.modelHeading = '#modelHeading';
+    this.temperatureHeading = '#temperature'
+    this.topPHeading = '#topP'
+    this.maxTokensHeading = '#maximumTokensGenerated'
+    this.doSampleHeading = '#doSample'
+    this.systemHeading = '#systemHeading'
+    this.doSampleTrue = '#doSampleTrue'
+    this.doSampleFalse = '#doSampleFalse'
+
+    //sidebar-generation
+    this.leftSideBarButton = "#leftArrow";
+    this.rightSideBarButton = "#rightArrow";
+    this.systemTextBox = '//textarea[@placeholder="doSampleTrue"]';
+    this.system = "#system";
+
   }
 
   async newChatHovering() {
@@ -62,7 +77,7 @@ exports.HomePage = class HomePage {
     const input = await this.page.locator(this.searchButton);
     await input.waitFor();
     await input.click();
-    await this.page.waitForTimeout(40000);
+    await this.page.waitForTimeout(20000);
   }
   async three_vertical_dot_() {
     await this.page
@@ -138,29 +153,62 @@ exports.HomePage = class HomePage {
   }
 
   async clickRegionButton_() {
-    await this.page.locator(this.region).click()
+    await this.page.locator(this.region).click();
   }
   async closeRegion_() {
-    await this.page.locator(this.closeRegion).click()
+    await this.page.locator(this.closeRegion).click();
   }
 
-  async multiSelectState_(){
-    await this.page.locator(this.state).nth(0).click()
-    await this.page.locator(this.state).nth(15).click()
-    await this.page.locator(this.state).nth(3).click()
-    await this.page.locator(this.state).nth(24).click()
-    await this.page.locator(this.center).click()
+  async multiSelectState_() {
+    await this.page.locator(this.state).nth(0).click();
+    await this.page.locator(this.state).nth(15).click();
+    await this.page.locator(this.state).nth(3).click();
+    await this.page.locator(this.state).nth(24).click();
+    await this.page.locator(this.center).click();
   }
 
-  async clearAllRegionSelection_(){
-    await this.page.locator(this.clearAll).click() 
+  async clearAllRegionSelection_() {
+    await this.page.locator(this.clearAll).click();
   }
 
-  async editChatTitle(title){
-    await this.page.locator(this.title).click()
+  async editChatTitle(title) {
+    await this.page.locator(this.title).click({ waitForTimeout: 2000 });
     await this.page
       .locator(this.updateTitle)
       .fill(title, { waitForTimeout: 3000 });
-      await this.page.locator(this.save).click()
+    await this.page.locator(this.save).click({ waitForTimeout: 2000 });
+  }
+
+  async selectLeftSideBar_() {
+    await this.page.locator(this.leftSideBarButton).click();
+  }
+
+  async selectRightSideBar_() {
+    await this.page.locator(this.rightSideBarButton).click();
+  }
+
+  async systemSettings_(input) {
+    const labelSelector = `label:text("${"False"}")`;
+    const labelElement = await this.page.$(labelSelector);
+    await this.page.locator(this.system).click();
+    await this.page.locator(this.system).fill(input);
+    await labelElement.click();
+    await this.page.evaluate(() => {
+      let temperature_slider = document.querySelector("#temperature");
+      let topP_slider = document.querySelector("#topP");
+      let maxTokensGen_slider = document.querySelector(
+        "#maximumTokensGenerated"
+      );
+      temperature_slider.value = 0.5; // Set the value of the slider to 0.5
+      temperature_slider.dispatchEvent(new Event("input", { bubbles: true }));
+      topP_slider.value = 0.19;
+      topP_slider.dispatchEvent(new Event("input", { bubbles: true }));
+      maxTokensGen_slider.value = 360;
+      maxTokensGen_slider.dispatchEvent(new Event("input", { bubbles: true }));
+      
+    });
+  }
+  async selectRegion_() {
+    await this.page.locator(this.center).click();
   }
 };

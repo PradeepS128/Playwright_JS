@@ -33,7 +33,7 @@ const setup=(page)=>{  // reusuable code
     newchatpage:new NewChatPage(page)
 }}
 ///////////////////////////////////////////////////////////////////////////////
-// test.describe.configure({mode:'serial'})
+// test.skip.describe.configure({mode:'serial'})
 test.describe.configure({mode:'parallel'})
 test.skip("TC-01_verify the functionality of user login, hover action on the New Chat button, sequential query entry, and generation of chat responses with an overall summary", async({page})=>{
     const {homepage,input}=setup(page)
@@ -212,6 +212,7 @@ test.skip("TC-22_Verify User Login Functionality, validate Region button in Thre
     await homepage.three_vertical_dot_()
     await homepage.clickRegionButton_()
     await homepage.selectRegion_()
+    await homepage.closeRegion_()
     await homepage.searchTextField_(input)
     await homepage.searchResults()
 })
@@ -233,7 +234,7 @@ test.skip("TC-24_Verify User Login Functionality, perform multiple query entry",
     await homepage.searchResults() 
 })
 
-test.skip("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
+test("TC-25_Verify User Login Functionality and edit chat title",async({page})=>{
     const {homepage, input, title}=setup(page)
     await homepage.searchTextField_(input)
     await homepage.searchResults()
@@ -241,7 +242,7 @@ test.skip("TC-25_Verify User Login Functionality and edit chat title",async({pag
     expect.soft(await page.locator("#reportTitle")).toHaveText(title)
 })
 
-test("TC-26_Verify User Login Functionality, enter a query from chat history",async({page})=>{
+test.skip("TC-26_Verify User Login Functionality, enter a query from chat history",async({page})=>{
     const {homepage, historyPage, input_2}=setup(page)
     await homepage.three_vertical_dot_()
     await homepage.historyPage_()

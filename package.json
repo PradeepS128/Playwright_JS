@@ -6,7 +6,9 @@
   "scripts": {
     "E2E_HTML": "npx playwright test tests/E2E_HTML.spec.js",
     "UI_PDFi": "npx playwright test UI_PDFi.spec.js --project chromium --headed",
-    "E2E_PDFi": "npx playwright test E2E_PDFi.spec.js --project chromium --headed"
+    "E2E_PDFi": "npx playwright test E2E_PDFi.spec.js --project chromium --headed --debug",
+    "E2E_Generation": "npx playwright test E2E_Generation.spec.js --project chromium --headed",
+    "UI_Generation": "npx playwright test UI_Generation.spec.js --project chromium --headed"
   },
   "keywords": [],
   "author": "",

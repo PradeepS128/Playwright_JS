@@ -3,7 +3,7 @@ exports.NewChatPage=class NewChatPage
 constructor(page){
 this.page=page
 this.htmlDoc="div #htmlResource"
-this.pdfIDoc="div #pdfIResources"
+this.pdfIDoc="//canvas"
 this.popupClose="div #closeBtn"
 this.ratings='#ratingIcon'
 this.commentBoxIcon="#commentsIcon"

@@ -28,7 +28,8 @@ exports.ReportPage = class ReportPage {
       this.PopupTitle = '#modalHeader';
       this.PopupText = '#modalBody';
       this.PopupCancle = page.getByRole('button', { name: 'Cancel' });
-      this.PopupDelete = page.getByRole('button', { name: 'Delete' });
+      this.PopupDelete = '#DeleteBtn';
+      // this.PopupDelete = page.getByRole('button', { name: 'Delete' });
       this.editReportPageSave = page.getByRole('button', { name: 'Save' });
     }
   
@@ -36,7 +37,7 @@ exports.ReportPage = class ReportPage {
       await this.page.locator(this.reportTitleAreaBox).fill(input);
     }
     async saveReportTitle() {
-      await this.save.click();
+      await this.save.click({ waitForTimeout: 2000 });
     }
     async reportCloseButton_() {
       await this.page.locator(this.close).click();
@@ -49,7 +50,7 @@ exports.ReportPage = class ReportPage {
       await this.page.locator(this.reportTitleName).first().click();
     }
     async editTitle() {
-      await this.page.locator(this.editTitleButton).click();
+      await this.page.locator(this.editTitleButton).click({ waitForTimeout: 2000 });
     }
   
     //harish
@@ -58,5 +59,9 @@ exports.ReportPage = class ReportPage {
     }
     async three_dot_delete() {
       await this.page.locator(this.threeDotsDelete).click();
+      // await this.page.locator(this.PopupDelete).click({ delay: 3000 });
+    }
+    async pop_up_delete() {
+      await this.page.$('#DeleteBtn');
     }
   };
