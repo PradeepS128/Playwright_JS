@@ -17,8 +17,8 @@ test.afterEach("close the browser",async({page})=>{
 })
 const setup=(page)=>{                      // reusuable code
     return {
-    username:'pradeep.kumar@fibonalabs.com',
-    password:'pradeep@123',    
+    username:'',
+    password:'',    
     input:'How are these trends influencing global energy policies?',
     title:'Global energy policies?',
     ratingsCount:3,
